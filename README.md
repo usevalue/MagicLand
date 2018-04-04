@@ -1,0 +1,1 @@
+This is the development repository for "MagicLand," the working title for the final project of the Spring 2018 Game Design class at SUNY Buffalo.
