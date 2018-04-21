@@ -11,7 +11,7 @@ public class VibSense : MonoBehaviour {
 
 	void Start () {
 		stream.Open ();
-		stream.ReadTimeout = 25;
+		stream.ReadTimeout = 50;
 	}
 
 
