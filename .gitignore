@@ -1,3 +1,9 @@
-Homunculus\Library\ScriptAssemblies\*
-Homunculus\Library\metadata\*
-Homunculus\Temp\*
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Assets/AssetStoreTools*
+.vs/
+*.apk
+*.unitypackage
