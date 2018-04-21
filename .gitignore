@@ -1,9 +1,9 @@
-Homunculus/Library/
-Homunculus/Temp/
-Homunculus/Obj/
-Homunculus/Build/
-Homunculus/Builds/
-Homunculus/Assets/AssetStoreTools*
+/Homunculus/Library
+/Homunculus/Temp
+/Homunculus/Obj
+/Homunculus/Build
+/Homunculus/Builds
+/Homunculus/Assets/AssetStoreTools*
 .vs/
 *.apk
 *.unitypackage
