@@ -2876,10 +2876,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9994fba4691c2824da7c5bc692a8f598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positives:
-  - M1
+  positives: []
   negatives: []
-  descent: 1.5
+  descent: 3
   speed: 0.01
 --- !u!1 &1566308457 stripped
 GameObject:
