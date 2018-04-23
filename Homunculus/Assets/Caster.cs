@@ -14,7 +14,8 @@ public class Caster : MonoBehaviour {
 
 	void Start () {
         obelisks = FindObjectsOfType<MagicObelisk>();
-        Debug.Log(obelisks.Length + " obelisks found.");
+        idols = FindObjectsOfType<MagicIdol>();
+        Debug.Log(obelisks.Length + " obelisks and "+idols.Length+" idols found.");
 	}
 	
 	void Update () {
@@ -49,6 +50,13 @@ public class Caster : MonoBehaviour {
             if((o.GetComponent<Transform>().position-GetComponent<Transform>().position).magnitude<castingRange)
             {
                 o.toggle();
+            }
+        }
+        foreach(MagicIdol i in idols)
+        {
+            if ((i.GetComponent<Transform>().position - GetComponent<Transform>().position).magnitude < castingRange)
+            {
+                i.ping();
             }
         }
     }
