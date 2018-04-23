@@ -4,6 +4,8 @@
 /Homunculus/Build
 /Homunculus/Builds
 /Homunculus/Assets/AssetStoreTools*
-.vs/
+/Homunculus/.vs/
 *.apk
 *.unitypackage
+*.log
+
