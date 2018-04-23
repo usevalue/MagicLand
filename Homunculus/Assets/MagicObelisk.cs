@@ -15,7 +15,6 @@ public class MagicObelisk : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (updated) {
-            Debug.Log("Updating " + name + "!  Halo is now: " + activated);
             ((Behaviour)GetComponent("Halo")).enabled = activated;
             foreach(string n in connections)
             {

@@ -1,0 +1,11 @@
+/Homunculus/Library
+/Homunculus/Temp
+/Homunculus/Obj
+/Homunculus/Build
+/Homunculus/Builds
+/Homunculus/Assets/AssetStoreTools*
+/Homunculus/.vs/
+*.apk
+*.unitypackage
+*.log
+

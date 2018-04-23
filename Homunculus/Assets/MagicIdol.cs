@@ -26,12 +26,9 @@ public class MagicIdol : MonoBehaviour {
         activated = false;
     }
 
-    public void OnMouseDown()
+    public void ping()
     {
-        if((transform.position-GameObject.Find("Character_Elf").GetComponent<Transform>().position).magnitude<5)
-        {
-            activated = true;
-        }
+        activated = true;
     }
 
     public void lightUp()

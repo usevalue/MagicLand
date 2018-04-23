@@ -10,15 +10,18 @@ public class VibSense : MonoBehaviour {
 
 
 	void Start () {
-		stream.Open ();
-		stream.ReadTimeout = 50;
+        stream.Open();
+        stream.ReadTimeout = 50;
 	}
 
 
 	void Update () {
-		string value = stream.ReadLine ();
-		vibState = int.Parse (value);
-		Debug.Log (value);
+        if (stream.IsOpen)
+        {
+            string value = stream.ReadLine();
+            vibState = int.Parse(value);
+            Debug.Log(value);
+        }
 	}
 
 

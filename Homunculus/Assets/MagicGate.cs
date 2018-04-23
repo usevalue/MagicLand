@@ -12,10 +12,12 @@ public class MagicGate : MonoBehaviour {
     float topY;
     public float descent = 3F;
     public float speed = 0.2F;
+    AudioSource[] audio;
 
 
 	void Start () {
         topY = transform.position.y;
+        audio = GetComponents<AudioSource>();
 	}
 	
 
@@ -35,6 +37,8 @@ public class MagicGate : MonoBehaviour {
             if(open!=targetposition)
             {
                 open = targetposition;
+                if (open) audio[0].Play();
+                else audio[1].Play();
                 moving = true;
             }
             updated = false;
