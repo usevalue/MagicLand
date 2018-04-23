@@ -42,7 +42,7 @@ public class IdolPuzzle : MonoBehaviour {
                     else
                     {
                         soundEffects[0].Play();
-                        GameObject.Find("G5").GetComponent<MagicGate>().ping();
+                        GameObject.Find("G1").GetComponent<MagicGate>().ping();
                         index = 0;
                     }
                 }

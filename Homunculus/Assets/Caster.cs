@@ -10,6 +10,7 @@ public class Caster : MonoBehaviour {
     public float castingRange = 5F;
     int castCount = 0;
     MagicObelisk[] obelisks;
+    MagicIdol[] idols;
 
 	void Start () {
         obelisks = FindObjectsOfType<MagicObelisk>();
