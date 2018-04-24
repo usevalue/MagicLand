@@ -9,6 +9,9 @@ public class SoundLibrary : MonoBehaviour {
     public AudioClip death;
     public AudioClip obeliskOn;
     public AudioClip obeliskOff;
+    public AudioClip castSpell;
+    public AudioClip doorOpen;
+    public AudioClip doorClose;
 
 	// Use this for initialization
 	void Start () {

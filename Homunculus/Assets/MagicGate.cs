@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicGate : MonoBehaviour {
+public class MagicGate : MagicSensitive {
 
     bool updated = false;
     bool open = false;
@@ -12,12 +12,9 @@ public class MagicGate : MonoBehaviour {
     float topY;
     public float descent = 3F;
     public float speed = 0.2F;
-    AudioSource[] audio;
-
 
 	void Start () {
         topY = transform.position.y;
-        audio = GetComponents<AudioSource>();
 	}
 	
 
@@ -37,8 +34,11 @@ public class MagicGate : MonoBehaviour {
             if(open!=targetposition)
             {
                 open = targetposition;
-                if (open) audio[0].Play();
-                else audio[1].Play();
+                if (open)
+                {
+                    GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.doorOpen);
+                }
+                else GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.doorClose);
                 moving = true;
             }
             updated = false;
@@ -66,7 +66,7 @@ public class MagicGate : MonoBehaviour {
         }
 	}
 
-    public void ping()
+    public override void ping()
     {
         updated = true;
     }

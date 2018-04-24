@@ -258,6 +258,7 @@
     <Compile Include="Assets\MagicGate.cs" />
     <Compile Include="Assets\MagicIdol.cs" />
     <Compile Include="Assets\MagicObelisk.cs" />
+    <Compile Include="Assets\MagicSensitive.cs" />
     <Compile Include="Assets\Moe Baker\Advanced Rigidbody FirstPerson Controller\Extra\Scripts\InputLabel.cs" />
     <Compile Include="Assets\Moe Baker\Advanced Rigidbody FirstPerson Controller\Extra\Scripts\Teleporter.cs" />
     <Compile Include="Assets\Moe Baker\Advanced Rigidbody FirstPerson Controller\Scripts\Controller\FPController.cs" />

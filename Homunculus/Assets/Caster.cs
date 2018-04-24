@@ -17,22 +17,9 @@ public class Caster : MonoBehaviour {
         obelisks = FindObjectsOfType<MagicObelisk>();
         idols = FindObjectsOfType<MagicIdol>();
         Debug.Log(obelisks.Length + " obelisks and " + idols.Length + " idols found.");
-        if (quietTime >= 0)
-        {
-            GetComponent<AudioListener>().enabled = false;
-            GetComponent<AudioSource>().enabled = false;
-        }
     }
 
     void Update() {
-        if (quietTime > 0) quietTime--;
-        else if (quietTime == 0)
-        {
-            GetComponent<AudioListener>().enabled = true;
-            GetComponent<AudioSource>().enabled = true;
-            GetComponent<AudioSource>().Play();
-            quietTime--;
-        }
 
         if (Input.GetKey("e"))
         {
@@ -40,6 +27,7 @@ public class Caster : MonoBehaviour {
             {
                 casting = true;
                 castingMeter = 0;
+                GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.castSpell,0.05f);
             }
             else castingMeter++;
 
