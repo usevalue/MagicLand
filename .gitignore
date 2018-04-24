@@ -10,5 +10,5 @@
 *.apk
 *.unitypackage
 *.log
-
+*.sln
 *.meta
