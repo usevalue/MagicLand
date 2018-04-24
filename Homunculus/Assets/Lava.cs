@@ -16,7 +16,6 @@ public class Lava : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Burn!");
         FindObjectOfType<Caster>().die();
     }
 }

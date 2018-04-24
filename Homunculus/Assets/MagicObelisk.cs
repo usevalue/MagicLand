@@ -26,6 +26,8 @@ public class MagicObelisk : MonoBehaviour {
 
     public void toggle() {
         activated = !activated;
+        if (activated) GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.obeliskOn);
+        else GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.obeliskOff);
         updated = true;
     }
 }
