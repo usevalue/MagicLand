@@ -10,22 +10,21 @@ public class Caster : MonoBehaviour {
     public float castingRange = 5F;
     int castCount = 0;
     public int quietTime = 500;
-    public AudioClip death;
     MagicObelisk[] obelisks;
     MagicIdol[] idols;
 
-	void Start () {
+    void Start() {
         obelisks = FindObjectsOfType<MagicObelisk>();
         idols = FindObjectsOfType<MagicIdol>();
-        Debug.Log(obelisks.Length + " obelisks and "+idols.Length+" idols found.");
+        Debug.Log(obelisks.Length + " obelisks and " + idols.Length + " idols found.");
         if (quietTime >= 0)
         {
             GetComponent<AudioListener>().enabled = false;
             GetComponent<AudioSource>().enabled = false;
         }
-	}
-	
-	void Update () {
+    }
+
+    void Update() {
         if (quietTime > 0) quietTime--;
         else if (quietTime == 0)
         {
@@ -57,18 +56,25 @@ public class Caster : MonoBehaviour {
             casting = false;
             castingMeter = 0;
         }
-	}
+        if(dead)
+        {
+            if(Time.fixedTime-timeOfDeath>6)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("copy-scene");
+            }
+        }
+    }
 
     void castSpell()
     {
         foreach (MagicObelisk o in obelisks)
         {
-            if((o.GetComponent<Transform>().position-GetComponent<Transform>().position).magnitude<castingRange)
+            if ((o.GetComponent<Transform>().position - GetComponent<Transform>().position).magnitude < castingRange)
             {
                 o.toggle();
             }
         }
-        foreach(MagicIdol i in idols)
+        foreach (MagicIdol i in idols)
         {
             if ((i.GetComponent<Transform>().position - GetComponent<Transform>().position).magnitude < castingRange)
             {
@@ -77,8 +83,12 @@ public class Caster : MonoBehaviour {
         }
     }
 
+    bool dead = false;
+    float timeOfDeath;
     public void die()
     {
-        GetComponent<AudioSource>().PlayOneShot(death,1F);
+        GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.death,1F);
+        dead = true;
+        timeOfDeath = Time.fixedTime;
     }
 }
