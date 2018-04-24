@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lava : MonoBehaviour {
+public class Escalator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,10 +13,4 @@ public class Lava : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Burn!");
-        FindObjectOfType<Caster>().die();
-    }
 }

@@ -6,9 +6,11 @@ public class Caster : MonoBehaviour {
 
     bool casting = false;
     int castingMeter = 0;
-    public int castingTime = 1000;
+    public int castingTime = 500;
     public float castingRange = 5F;
     int castCount = 0;
+    public int quietTime = 500;
+    public AudioClip death;
     MagicObelisk[] obelisks;
     MagicIdol[] idols;
 
@@ -16,9 +18,23 @@ public class Caster : MonoBehaviour {
         obelisks = FindObjectsOfType<MagicObelisk>();
         idols = FindObjectsOfType<MagicIdol>();
         Debug.Log(obelisks.Length + " obelisks and "+idols.Length+" idols found.");
+        if (quietTime >= 0)
+        {
+            GetComponent<AudioListener>().enabled = false;
+            GetComponent<AudioSource>().enabled = false;
+        }
 	}
 	
 	void Update () {
+        if (quietTime > 0) quietTime--;
+        else if (quietTime == 0)
+        {
+            GetComponent<AudioListener>().enabled = true;
+            GetComponent<AudioSource>().enabled = true;
+            GetComponent<AudioSource>().Play();
+            quietTime--;
+        }
+
         if (Input.GetKey("e"))
         {
             if (!casting)
@@ -59,5 +75,10 @@ public class Caster : MonoBehaviour {
                 i.ping();
             }
         }
+    }
+
+    public void die()
+    {
+        GetComponent<AudioSource>().PlayOneShot(death,1F);
     }
 }
