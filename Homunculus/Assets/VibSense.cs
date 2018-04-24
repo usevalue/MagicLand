@@ -14,8 +14,15 @@ public class VibSense : MonoBehaviour
 
 	void Start ()
 	{
-		stream.Open ();
-		stream.ReadTimeout = 1;
+        try
+        {
+            stream.Open();
+            stream.ReadTimeout = 1;
+        }
+        catch (System.IO.IOException e)
+        {
+            Debug.Log("No wand available.");
+        }
 	}
 
 
