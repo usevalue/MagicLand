@@ -8,8 +8,9 @@ using System.IO.Ports;
 
 public class VibSense : MonoBehaviour
 {
+    public static string portName = "/dev/cu.usbmodem1411";
 
-	SerialPort stream = new SerialPort ("/dev/cu.usbmodem1411", 9600); //check port name in Arduino and match!
+    SerialPort stream = new SerialPort (portName, 9600); //check port name in Arduino and match!
 
 	void Start ()
 	{
