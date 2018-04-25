@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MagicGate : MagicSensitive {
 
-    bool updated = false;
+    public bool updated = false;
     bool open = false;
     bool moving = false;
     public string[] positives;
