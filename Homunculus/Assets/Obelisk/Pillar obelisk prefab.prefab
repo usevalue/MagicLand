@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 122961890729194444}
   - component: {fileID: 82014092623854856}
   m_Layer: 0
-  m_Name: Pillar obelisk prefab
+  m_Name: Obelisk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

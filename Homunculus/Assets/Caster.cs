@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Caster : MonoBehaviour {
 
-    bool casting = false;
-    int castingMeter = 0;
-    public int castingTime = 500;
+
+    public int castTime = 100;
+    public int cooldown = 200;
+    int castClock = 0;
     public float castingRange = 5F;
-    int castCount = 0;
-    public int quietTime = 500;
     MagicObelisk[] obelisks;
     MagicIdol[] idols;
 
@@ -23,27 +22,23 @@ public class Caster : MonoBehaviour {
 
         if (Input.GetKey("e"))
         {
-            if (!casting)
+            if(castClock==0)
             {
-                casting = true;
-                castingMeter = 0;
                 GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.castSpell,0.05f);
+                castClock++;
             }
-            else castingMeter++;
+        }
 
-            if (castingMeter >= castingTime)
+        if(castClock>0)
+        {
+            if(castClock==castTime)
             {
                 castSpell();
-                casting = false;
-                castingMeter = 0;
-                castCount++;
             }
+            castClock++;
+            if (castClock == castTime + cooldown) castClock = 0;
         }
-        else if (casting)
-        {
-            casting = false;
-            castingMeter = 0;
-        }
+
         if(dead)
         {
             if(Time.fixedTime-timeOfDeath>6)
@@ -75,8 +70,11 @@ public class Caster : MonoBehaviour {
     float timeOfDeath;
     public void die()
     {
-        GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.death,1F);
-        dead = true;
-        timeOfDeath = Time.fixedTime;
+        if (!dead)
+        {
+            GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.death, 0.6F);
+            dead = true;
+            timeOfDeath = Time.fixedTime;
+        }
     }
 }
