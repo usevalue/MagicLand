@@ -20,9 +20,9 @@ void loop() {
 
   //circuit is set HIGH intially, going LOW when closed
   if (digitalRead(vibPad) == LOW) {
-    Serial.write ((byte)0);
+    //Serial.write ((byte)0);
     Serial.flush();
-    Serial.println(0);
+    Serial.print(0);
     delay(20);
     ledState = HIGH;
   };
