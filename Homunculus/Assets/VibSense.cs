@@ -42,7 +42,8 @@ public class VibSense : MonoBehaviour
 	void Wand (int vibState)
 	{
 
-		if (vibState == 0) { 
+		if (vibState == 0) { //if something is happening
+            GameObject.Find("3rdPersonCamera").GetComponent<Caster>().castSpell();
 			//MAKE SPARKLES...
 			int value = stream.ReadByte (); //read Arduino byte and store value as integer
 			//if arduino sends 0 (triggered), Unity receives 48 (byte representation of character 0), so use 48 to trigger events 

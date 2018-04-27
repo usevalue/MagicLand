@@ -48,7 +48,7 @@ public class Caster : MonoBehaviour {
         }
     }
 
-    void castSpell()
+    public void castSpell()
     {
         foreach (MagicObelisk o in obelisks)
         {
