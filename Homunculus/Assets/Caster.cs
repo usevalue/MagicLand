@@ -22,11 +22,7 @@ public class Caster : MonoBehaviour {
 
         if (Input.GetKey("e"))
         {
-            if(castClock==0)
-            {
-                GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.castSpell,0.05f);
-                castClock++;
-            }
+            startCast();
         }
 
         if(castClock>0)
@@ -48,6 +44,15 @@ public class Caster : MonoBehaviour {
         }
     }
 
+    public void startCast()
+    {
+        if (castClock == 0)
+        {
+            GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.castSpell, 0.05f);
+            castClock++;
+        }
+    }
+
     public void castSpell()
     {
         foreach (MagicObelisk o in obelisks)
@@ -59,7 +64,7 @@ public class Caster : MonoBehaviour {
         }
         foreach (MagicIdol i in idols)
         {
-            if ((i.GetComponent<Transform>().position - GetComponent<Transform>().position).magnitude < castingRange)
+            if ((i.GetComponent<Transform>().position - GameObject.Find("Homunculus").GetComponent<Transform>().position).magnitude < castingRange)
             {
                 i.ping();
             }
