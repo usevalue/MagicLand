@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO.Ports;
 using UnityEngine;
 
 public class Caster : MonoBehaviour {
@@ -12,18 +13,40 @@ public class Caster : MonoBehaviour {
     MagicObelisk[] obelisks;
     MagicIdol[] idols;
 
+
+    // Wand peripheral
+    public static string portName = "COM3";
+    SerialPort stream = new SerialPort(portName, 9600);
+    bool usingWand = false;
+    public bool wandPresent()
+    {
+        return usingWand;
+    }
+
+
     void Start() {
+        // What is input?
+        try
+        {
+            stream.Open();
+            stream.ReadTimeout = 1;
+            usingWand = true;
+        }
+        catch (System.IO.IOException e)
+        {
+            Debug.Log("No wand available.");
+        }
+
         obelisks = FindObjectsOfType<MagicObelisk>();
-        idols = FindObjectsOfType<MagicIdol>();
-        Debug.Log(obelisks.Length + " obelisks and " + idols.Length + " idols found.");
-        spell = GameObject.FindGameObjectWithTag("Spellcast");
+        //idols = FindObjectsOfType<MagicIdol>();
+        spell = GameObject.Find("Spell");
     }
 
     void Update() {
 
-        if (Input.GetKey("e"))
+        if (!usingWand&&Input.GetKey("e"))
         {
-            startCast();
+            waveWand();
         }
 
         if(castClock>0)
@@ -45,14 +68,16 @@ public class Caster : MonoBehaviour {
         }
     }
 
-    public void startCast()
+    public void waveWand()
     {
         if (castClock == 0)
         {
             GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.castSpell, 1f);
+            spell.GetComponent<ParticleSystem>().Play();
             castClock++;
         }
     }
+
 
     public void castSpell()
     {
@@ -63,7 +88,6 @@ public class Caster : MonoBehaviour {
             if ((o.GetComponent<Transform>().position - GetComponent<Transform>().position).magnitude < castingRange)
             {
                 o.toggle();
-                spell.GetComponent<ParticleSystem>().Play();
             }
         }
 

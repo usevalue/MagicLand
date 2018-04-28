@@ -45,7 +45,7 @@ public class VibSense : MonoBehaviour
         Debug.Log(vibState);
 
 		if (vibState == 48) { //if something is happening
-            GameObject.Find("3rdPersonCamera").GetComponent<Caster>().startCast();
+            GameObject.Find("3rdPersonCamera").GetComponent<Caster>().waveWand();
 			//MAKE SPARKLES...
 			int value = stream.ReadByte (); //read Arduino byte and store value as integer
 			//if arduino sends 0 (triggered), Unity receives 48 (byte representation of character 0), so use 48 to trigger events 
