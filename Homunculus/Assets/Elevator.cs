@@ -88,6 +88,22 @@ public class Elevator : MagicSensitive {
         }
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "player")
+        {
+            other.transform.parent = transform;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "player")
+        {
+            other.transform.parent = null;
+        }
+    }
+
     public override void ping()
     {
         changed = true;

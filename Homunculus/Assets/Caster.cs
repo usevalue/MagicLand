@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Caster : MonoBehaviour {
 
-
+    GameObject spell;
     public int castTime = 100;
     public int cooldown = 200;
     int castClock = 0;
@@ -16,6 +16,7 @@ public class Caster : MonoBehaviour {
         obelisks = FindObjectsOfType<MagicObelisk>();
         idols = FindObjectsOfType<MagicIdol>();
         Debug.Log(obelisks.Length + " obelisks and " + idols.Length + " idols found.");
+        spell = GameObject.FindGameObjectWithTag("Spellcast");
     }
 
     void Update() {
@@ -48,20 +49,25 @@ public class Caster : MonoBehaviour {
     {
         if (castClock == 0)
         {
-            GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.castSpell, 0.05f);
+            GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.castSpell, 1f);
             castClock++;
         }
     }
 
     public void castSpell()
     {
+        //MagicObelisk target;
+
         foreach (MagicObelisk o in obelisks)
         {
             if ((o.GetComponent<Transform>().position - GetComponent<Transform>().position).magnitude < castingRange)
             {
                 o.toggle();
+                spell.GetComponent<ParticleSystem>().Play();
             }
         }
+
+        /*
         foreach (MagicIdol i in idols)
         {
             if ((i.GetComponent<Transform>().position - GameObject.Find("Homunculus").GetComponent<Transform>().position).magnitude < castingRange)
@@ -69,6 +75,7 @@ public class Caster : MonoBehaviour {
                 i.ping();
             }
         }
+        */
     }
 
     bool dead = false;
@@ -77,7 +84,7 @@ public class Caster : MonoBehaviour {
     {
         if (!dead)
         {
-            GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.death, 0.6F);
+            GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.death, 0.45F);
             dead = true;
             timeOfDeath = Time.fixedTime;
         }
