@@ -827,7 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5770f7e4d7661d042a3f5795c0893b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castTime: 60
+  castTime: 20
   cooldown: 60
   castingRange: 12
 --- !u!82 &175511353
@@ -1310,10 +1310,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 340568573}
+  - component: {fileID: 340568574}
   - component: {fileID: 340568572}
   - component: {fileID: 340568571}
   - component: {fileID: 340568570}
-  - component: {fileID: 340568574}
   - component: {fileID: 340568575}
   m_Layer: 0
   m_Name: Great Gate
@@ -1382,7 +1382,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 340568569}
   m_LocalRotation: {x: -0, y: -0.53455526, z: -0, w: 0.8451336}
-  m_LocalPosition: {x: 173.3, y: 32, z: 224.4}
+  m_LocalPosition: {x: 173.3, y: 0, z: 224.4}
   m_LocalScale: {x: 48.663593, y: 3.6070955, z: 2.1892748}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1396,15 +1396,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 340568569}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9994fba4691c2824da7c5bc692a8f598, type: 3}
+  m_Script: {fileID: 11500000, guid: b5f03abcc9608b94b843fdd187c38323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updated: 1
-  positives: []
-  negatives:
+  x1: 173.3
+  y1: 0
+  z1: 224.4
+  x2: 173.3
+  y2: 32
+  z2: 224.4
+  speed: 0.05
+  from1to2:
   - Parkour
-  descent: 40
-  speed: 0.01
+  requiresAll: 0
 --- !u!82 &340568575
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1498,7 +1502,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 441248, guid: cd1ff9e92aad8ac4db78b6ffd5f1eab7, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.18
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 441248, guid: cd1ff9e92aad8ac4db78b6ffd5f1eab7, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1587,6 +1591,22 @@ Prefab:
     - target: {fileID: 19849020, guid: cd1ff9e92aad8ac4db78b6ffd5f1eab7, type: 2}
       propertyPath: lengthInSec
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 441248, guid: cd1ff9e92aad8ac4db78b6ffd5f1eab7, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19849020, guid: cd1ff9e92aad8ac4db78b6ffd5f1eab7, type: 2}
+      propertyPath: InitialModule.maxNumParticles
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 19812388, guid: cd1ff9e92aad8ac4db78b6ffd5f1eab7, type: 2}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19812388, guid: cd1ff9e92aad8ac4db78b6ffd5f1eab7, type: 2}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd1ff9e92aad8ac4db78b6ffd5f1eab7, type: 2}
@@ -2496,7 +2516,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 469886, guid: ee2d107a34692a64e95ce85aed5e41f0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 462.67
+      value: 462.65
       objectReference: {fileID: 0}
     - target: {fileID: 469886, guid: ee2d107a34692a64e95ce85aed5e41f0, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2504,7 +2524,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 469886, guid: ee2d107a34692a64e95ce85aed5e41f0, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 214.58
+      value: 214.66
       objectReference: {fileID: 0}
     - target: {fileID: 469886, guid: ee2d107a34692a64e95ce85aed5e41f0, type: 2}
       propertyPath: m_LocalRotation.x
