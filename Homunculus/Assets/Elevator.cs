@@ -90,7 +90,7 @@ public class Elevator : MagicSensitive {
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "player")
+        if(other.tag == "Player")
         {
             other.transform.parent = transform;
         }
@@ -98,7 +98,7 @@ public class Elevator : MagicSensitive {
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "player")
+        if(other.tag == "Player")
         {
             other.transform.parent = null;
         }
