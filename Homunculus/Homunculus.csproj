@@ -253,7 +253,6 @@
     <Compile Include="Assets\Invector-3rdPersonController\Basic Locomotion LITE\Scripts\Generic\vDestroyGameObject.cs" />
     <Compile Include="Assets\Invector-3rdPersonController\Basic Locomotion LITE\Scripts\Generic\vExtensions.cs" />
     <Compile Include="Assets\Invector-3rdPersonController\Basic Locomotion LITE\Scripts\Generic\vPickupItem.cs" />
-    <Compile Include="Assets\jckewf.cs" />
     <Compile Include="Assets\Lava.cs" />
     <Compile Include="Assets\MagicGate.cs" />
     <Compile Include="Assets\MagicIdol.cs" />
@@ -403,8 +402,8 @@
     <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\EffectShaderPropertyStr.cs" />
     <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\RenderEffect.cs" />
     <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\TransformExtension.cs" />
-    <Compile Include="Assets\script.cs" />
     <Compile Include="Assets\SoundLibrary.cs" />
+    <Compile Include="Assets\TutorialText.cs" />
     <Compile Include="Assets\VibSense.cs" />
   </ItemGroup>
   <ItemGroup>
