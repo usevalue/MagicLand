@@ -15,8 +15,8 @@ public class Caster : MonoBehaviour {
 
 
     // Wand peripheral
-    public static string portName = "COM3";
-    SerialPort stream = new SerialPort(portName, 9600);
+    public string portName = "COM3";
+    SerialPort stream;
     bool usingWand = false;
     public bool wandPresent()
     {
@@ -25,6 +25,7 @@ public class Caster : MonoBehaviour {
 
 
     void Start() {
+        stream = new SerialPort(portName, 9600);
         // What is input?
         try
         {

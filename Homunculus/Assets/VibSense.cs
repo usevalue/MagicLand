@@ -6,11 +6,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO.Ports;
 
-public class VibSense : MonoBehaviour
-{
-    public static string portName = "COM3";
+public class VibSense : MonoBehaviour { 
 
-    SerialPort stream = new SerialPort (portName, 9600); //check port name in Arduino and match!
+    SerialPort stream = new SerialPort ("COM3", 9600); //check port name in Arduino and match!
 
 	void Start ()
 	{
@@ -45,6 +43,7 @@ public class VibSense : MonoBehaviour
         Debug.Log(vibState);
 
 		if (vibState == 48) { //if something is happening
+            Debug.Log("Fire!");
             GameObject.Find("3rdPersonCamera").GetComponent<Caster>().waveWand();
 			//MAKE SPARKLES...
 			int value = stream.ReadByte (); //read Arduino byte and store value as integer
