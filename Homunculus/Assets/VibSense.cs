@@ -8,13 +8,21 @@ using System.IO.Ports;
 
 public class VibSense : MonoBehaviour
 {
+    public static string portName = "COM3";
 
-	SerialPort stream = new SerialPort ("/dev/cu.usbmodem1411", 9600); //check port name in Arduino and match!
+    SerialPort stream = new SerialPort (portName, 9600); //check port name in Arduino and match!
 
 	void Start ()
 	{
-		stream.Open ();
-		stream.ReadTimeout = 1;
+        try
+        {
+            stream.Open();
+            stream.ReadTimeout = 1;
+        }
+        catch (System.IO.IOException e)
+        {
+            Debug.Log("No wand available.");
+        }
 	}
 
 
@@ -30,15 +38,18 @@ public class VibSense : MonoBehaviour
 		}
 	}
 
+    int counter = 0;
 
 	void Wand (int vibState)
 	{
+        Debug.Log(vibState);
 
-		if (vibState == 0) { 
+		if (vibState == 48) { //if something is happening
+            GameObject.Find("3rdPersonCamera").GetComponent<Caster>().waveWand();
 			//MAKE SPARKLES...
 			int value = stream.ReadByte (); //read Arduino byte and store value as integer
 			//if arduino sends 0 (triggered), Unity receives 48 (byte representation of character 0), so use 48 to trigger events 
-			print(value); //check in console
+			//print(value); //check in console
 		}
 	}
 }

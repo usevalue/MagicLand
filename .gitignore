@@ -5,7 +5,10 @@
 /Homunculus/Builds
 /Homunculus/Assets/AssetStoreTools*
 /Homunculus/.vs/
+*.DS_Store
+*.csproj
 *.apk
 *.unitypackage
 *.log
-
+*.sln
+*.meta

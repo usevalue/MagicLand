@@ -1,63 +1,116 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO.Ports;
 using UnityEngine;
 
 public class Caster : MonoBehaviour {
 
-    bool casting = false;
-    int castingMeter = 0;
-    public int castingTime = 1000;
+    GameObject spell;
+    public int castTime = 100;
+    public int cooldown = 200;
+    int castClock = 0;
     public float castingRange = 5F;
-    int castCount = 0;
     MagicObelisk[] obelisks;
     MagicIdol[] idols;
 
-	void Start () {
-        obelisks = FindObjectsOfType<MagicObelisk>();
-        idols = FindObjectsOfType<MagicIdol>();
-        Debug.Log(obelisks.Length + " obelisks and "+idols.Length+" idols found.");
-	}
-	
-	void Update () {
-        if (Input.GetKey("e"))
-        {
-            if (!casting)
-            {
-                casting = true;
-                castingMeter = 0;
-            }
-            else castingMeter++;
 
-            if (castingMeter >= castingTime)
+    // Wand peripheral
+    public static string portName = "COM3";
+    SerialPort stream = new SerialPort(portName, 9600);
+    bool usingWand = false;
+    public bool wandPresent()
+    {
+        return usingWand;
+    }
+
+
+    void Start() {
+        // What is input?
+        try
+        {
+            stream.Open();
+            stream.ReadTimeout = 1;
+            usingWand = true;
+        }
+        catch (System.IO.IOException e)
+        {
+            Debug.Log("No wand available.");
+        }
+
+        obelisks = FindObjectsOfType<MagicObelisk>();
+        //idols = FindObjectsOfType<MagicIdol>();
+        spell = GameObject.Find("Spell");
+    }
+
+    void Update() {
+
+        if (!usingWand&&Input.GetKey("e"))
+        {
+            waveWand();
+        }
+
+        if(castClock>0)
+        {
+            if(castClock==castTime)
             {
                 castSpell();
-                casting = false;
-                castingMeter = 0;
-                castCount++;
+            }
+            castClock++;
+            if (castClock == castTime + cooldown) castClock = 0;
+        }
+
+        if(dead)
+        {
+            if(Time.fixedTime-timeOfDeath>6)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("copy-scene");
             }
         }
-        else if (casting)
-        {
-            casting = false;
-            castingMeter = 0;
-        }
-	}
+    }
 
-    void castSpell()
+    public void waveWand()
     {
+        if (castClock == 0)
+        {
+            GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.castSpell, 1f);
+            spell.GetComponent<ParticleSystem>().Play();
+            castClock++;
+        }
+    }
+
+
+    public void castSpell()
+    {
+        //MagicObelisk target;
+
         foreach (MagicObelisk o in obelisks)
         {
-            if((o.GetComponent<Transform>().position-GetComponent<Transform>().position).magnitude<castingRange)
+            if ((o.GetComponent<Transform>().position - GetComponent<Transform>().position).magnitude < castingRange)
             {
                 o.toggle();
             }
         }
-        foreach(MagicIdol i in idols)
+
+        /*
+        foreach (MagicIdol i in idols)
         {
-            if ((i.GetComponent<Transform>().position - GetComponent<Transform>().position).magnitude < castingRange)
+            if ((i.GetComponent<Transform>().position - GameObject.Find("Homunculus").GetComponent<Transform>().position).magnitude < castingRange)
             {
                 i.ping();
             }
+        }
+        */
+    }
+
+    bool dead = false;
+    float timeOfDeath;
+    public void die()
+    {
+        if (!dead)
+        {
+            GetComponent<AudioSource>().PlayOneShot(SoundLibrary.lib.death, 0.45F);
+            dead = true;
+            timeOfDeath = Time.fixedTime;
         }
     }
 }

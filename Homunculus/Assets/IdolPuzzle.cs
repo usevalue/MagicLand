@@ -18,7 +18,6 @@ public class IdolPuzzle : MonoBehaviour {
         soundEffects = GetComponents<AudioSource>();
         idols = new List<MagicIdol>();
         GameObject[] stones = GameObject.FindGameObjectsWithTag("Idols");
-		Debug.Log (stones.Length + " idols detected.");
         for(int x = 0; x<stones.Length; x++)
         {
             idols.Add(stones[x].GetComponent<MagicIdol>());

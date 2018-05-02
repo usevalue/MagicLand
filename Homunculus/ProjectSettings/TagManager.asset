@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Idols
+  - Wand
+  - Spellcast
   layers:
   - Default
   - TransparentFX

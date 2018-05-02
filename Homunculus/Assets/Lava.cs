@@ -13,4 +13,9 @@ public class Lava : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        FindObjectOfType<Caster>().die();
+    }
 }
